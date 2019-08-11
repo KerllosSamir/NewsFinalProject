@@ -9,7 +9,7 @@
                     <ul class="top_nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="pages/contact.html">Contact</a></li>
+                        <li><a href="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="header_top_right">
