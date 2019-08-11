@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="footer_bottom">
-        <p class="copyright">Copyright &copy; 2019 <a href="index.html">NewsFeed</a></p>
+        <p class="copyright">Copyright &copy; 2019 <a href="index.jsp">NewsFeed</a></p>
         <p class="developer">Developed By MUM team</p>
     </div>
 </footer>
