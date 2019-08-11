@@ -1,4 +1,4 @@
-package wap.news;
+package wap.news.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
