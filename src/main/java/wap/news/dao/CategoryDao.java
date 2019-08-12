@@ -62,8 +62,8 @@ public class CategoryDao {
             pstmt = conn.prepareStatement(query); // create a statement
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Category contact = new Category(rs.getString(2), rs.getBoolean(3));
-                map.put(rs.getInt(1), contact);
+                Category category = new Category(rs.getString(2), rs.getBoolean(3));
+                map.put(rs.getInt(1), category);
             }
             System.out.println(map);
             return map;
