@@ -58,7 +58,42 @@ public class CategoryDao {
         try {
             Map<Integer, Category> map = new HashMap<>();
             conn = jdbcConnection.getConnection();
-            String query = "SELECT * FROM category where isActive=1";
+            String query = "SELECT * FROM category ";
+            pstmt = conn.prepareStatement(query); // create a statement
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Category category = new Category(rs.getString(2), rs.getBoolean(3));
+                map.put(rs.getInt(1), category);
+            }
+            System.out.println(map);
+            return map;
+        } catch (SQLException se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            // Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (pstmt != null)
+                    conn.close();
+            } catch (SQLException se) {
+            } // do nothing
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        } // end try
+        return null;
+    }
+    public Map<Integer, Category> getActiveCategories() {
+        try {
+            Map<Integer, Category> map = new HashMap<>();
+            conn = jdbcConnection.getConnection();
+            String query = "SELECT * FROM category where isactive=1";
             pstmt = conn.prepareStatement(query); // create a statement
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

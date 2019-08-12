@@ -17,17 +17,27 @@
     <c:when test="${param.update == 'true'}">
     <h2>Update category information</h2>
     <form method="post" action="../update-category">
-        <c:forEach items="${contactById}" var="val">
+        <c:forEach items="${categoryById}" var="val">
             <input type="hidden" name="id" value="${val.key}">
             <div class="form-group">
                 <label for="uname">Name:</label>
                 <input type="text" class="form-control" id="uname" name="name" value="${val.value.name}">
             </div>
-            <div class="form-group">
-                <label for="uisActive">Is active:</label>
-                <input type="checkbox" class="form-control" id="uisActive" name="isActive"
-                       value="${val.value.isActive}">
+            <div class="checkbox">
+                <c:choose>
+                    <c:when test="${val.value.isActive}">
+                        <label>
+                            <input type="checkbox" name="isActive" checked> Is
+                            active</label>
+                    </c:when>
+                    <c:otherwise>
+                        <label>
+                            <input type="checkbox" name="isActive"> Is
+                            active</label>
+                    </c:otherwise>
+                </c:choose>
             </div>
+
             <button type="submit" class="btn btn-default" value="Update">Update</button>
         </c:forEach>
     </form>
@@ -41,7 +51,7 @@
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" id="isActive" name="isActive"> Is active:</label>
+            <label><input type="checkbox" id="isActive" name="isActive"> Is active</label>
         </div>
 
         <button type="submit" class="btn btn-default">Submit</button>
@@ -65,9 +75,9 @@
             <tr>
                 <td><c:out value="${val.value.name}"/></td>
                 <td><c:out value="${val.value.isActive}"/></td>
-                <td><a href="update-category?id=${val.key}"
+                <td><a href="../update-category?id=${val.key}"
                        class="btn btn-info" role="button">Update</a></td>
-                <td><a href="delete-category?id=${val.key}"
+                <td><a href="../delete-category?id=${val.key}"
                        class="btn btn-info" role="button">Delete</a></td>
             </tr>
         </c:forEach>
