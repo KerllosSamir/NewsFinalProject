@@ -11,12 +11,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
 
+<div class="container">
     <c:choose>
     <c:when test="${param.update == 'true'}">
     <h2>Update category information</h2>
-    <form method="post" action="update-category" class="form-inline">
+    <form method="post" action="../update-category">
         <c:forEach items="${contactById}" var="val">
             <input type="hidden" name="id" value="${val.key}">
             <div class="form-group">
@@ -35,7 +35,7 @@
 
     <c:otherwise>
     <h2>Add new category information</h2>
-    <form method="post" action="add-category" class="form-inline">
+    <form method="post" action="../add-category">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
@@ -73,6 +73,7 @@
         </c:forEach>
         </tbody>
     </table>
+
 
 </body>
 </html>
