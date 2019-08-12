@@ -26,7 +26,7 @@ public class CategoryDao {
             String sql = "INSERT INTO category(name,isActive) VALUES (?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, category.getName());
-            pstmt.setBoolean(2, category.getActive());
+            pstmt.setBoolean(2, category.getIsActive());
             //System.out.println("sql =" + sql);
             pstmt.executeUpdate();
             //System.out.println("Inserted records into the table...");
@@ -54,7 +54,7 @@ public class CategoryDao {
 
     }
 
-    public Map<Integer, Category> getAllContacts() {
+    public Map<Integer, Category> getAllCategories() {
         try {
             Map<Integer, Category> map = new HashMap<>();
             conn = jdbcConnection.getConnection();
