@@ -1,7 +1,6 @@
 package wap.news.controller;
 
 import wap.news.dao.CategoryDao;
-import wap.news.model.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

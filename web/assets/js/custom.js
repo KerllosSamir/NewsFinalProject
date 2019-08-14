@@ -1,4 +1,21 @@
 jQuery(document).ready(function() {
+    $(function() { getAllMenu() });
+
+    function getAllMenu() {
+        $.ajax("menu", {
+            "type": "get",
+        }).done(changeMenu);
+    }
+
+    function changeMenu(data) {
+        $("#topMenu").html("");
+
+        var ul = $("#topMenu");
+        for (var i = 0; i < data.length; i++) {
+            ul.append($("<li>").html($("<a href='#'>").html(data[i])));
+        }
+        $("#topMenu").append(ul);
+    }
     // for hover dropdown menu
     $('ul.nav li.dropdown').hover(function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
