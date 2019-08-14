@@ -43,7 +43,8 @@
 
             <div class="form-group">
                 <label for="umainImage">Main Image:</label>
-                <input type="text" class="form-control" id="umainImage" name="mainImage" value="${val.value.mainImage}"/>
+               <%-- <input type="text" class="form-control" id="umainImage" name="mainImage" value="${val.value.mainImage}"/>--%>
+                <input type="file" name="mainImage" id="umainImage"  class="form-control"/>
             </div>
 
             <div class="checkbox">
@@ -98,7 +99,7 @@
 
     <c:otherwise>
     <h2>Add new article information</h2>
-    <form method="post" action="../add-article">
+    <form method="post" action="../add-article" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter title"/>
@@ -121,8 +122,8 @@
         </div>
         <div class="form-group">
             <label for="mainImage">Main Image:</label>
-            <input type="text" class="form-control" id="mainImage" name="mainImage" placeholder="Enter title"/>
-
+            <%--<input type="text" class="form-control" id="mainImage" name="mainImage" placeholder="Enter title"/>--%>
+            <input type="file" name="mainImage" id="mainImage"  class="form-control"/>
         </div>
 
         <div class="checkbox">
