@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Kerll
@@ -19,7 +20,12 @@
 <body>
 <div class="container">
 <h2>Log In to Enter</h2>
-<form method="post" action="/login">
+    <c:if  test="errorMessage">
+    <div class="alert alert-danger">
+        <strong>${errorMessage}</strong>
+    </div>
+    </c:if>
+<form method="post" action="../login">
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Enter User name">
