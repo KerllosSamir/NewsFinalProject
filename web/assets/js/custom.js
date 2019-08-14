@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
     function changeScrollArticle(data) {
         $("ul#ticker01").html("");
         for (var i = 0; i < data.length; i++) {
-            $("ul#ticker01").append($("<li>").html("<a href='aCategory?id=" + data[i].id + "' ><img src='" + data[i].mainImage + "'> " + data[i].title + " </a>"));
+            $("ul#ticker01").append($("<li>").html("<a href='article?id=" + data[i].id + "' ><img src='" + data[i].mainImage + "'> " + data[i].title + " </a>"));
         }
     }
 
