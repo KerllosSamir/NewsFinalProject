@@ -23,11 +23,12 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("User_ID", k);
         });
 
-        if (request.getSession().getAttribute("User_ID") != null)
+        if (request.getSession().getAttribute("User_ID") != null) {
+            request.getSession().removeAttribute("logErrorMessage");
             response.sendRedirect("backend/index.jsp");
-        else{
-            request.getSession().setAttribute("errorMessage", "Wrong credentials! Can't find username & password");
-            request.getRequestDispatcher("../backend/login.jsp").forward(request, response);
+        } else {
+            request.getSession().setAttribute("logErrorMessage", "Wrong credentials! Can't find username & password");
+            response.sendRedirect("backend/login.jsp");
         }
 
     }

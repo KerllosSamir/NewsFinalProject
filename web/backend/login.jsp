@@ -16,27 +16,54 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
 <div class="container">
-<h2>Log In to Enter</h2>
-    <c:if  test="errorMessage">
-    <div class="alert alert-danger">
-        <strong>${errorMessage}</strong>
-    </div>
-    </c:if>
-<form method="post" action="../login">
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter User name">
-    </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password ">
+    <h2>Log In to Enter</h2>
+
+    <div class="alert alert-danger" style="display:${logErrorMessage == null? 'none' : 'block' }">
+        <strong>${logErrorMessage}</strong>
     </div>
 
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<%--    <form method="post" action="../login">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter User name">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password ">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>--%>
+
+    <form action="../login" method="post">
+        <div class="imgcontainer">
+            <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" id="username" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+
+
 </div>
 </body>
 </html>

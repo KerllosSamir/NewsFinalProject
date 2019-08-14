@@ -10,14 +10,14 @@
     <script src="../assets/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%--<%
+<%
     session=request.getSession(false);
     if(session.getAttribute("User_ID")==null)
     {
         response.sendRedirect("login.jsp");
     }
 
-%>--%>
+%>
 <jsp:include page="menu.jsp"></jsp:include>
 
 </body>
