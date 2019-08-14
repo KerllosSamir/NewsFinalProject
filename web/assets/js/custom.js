@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
     function changeScrollArticle(data) {
         $("ul#ticker01").html("");
         for (var i = 0; i < data.length; i++) {
-            $("ul#ticker01").append($("<li>").html("<a href='article?id=" + data[i].id + "' ><img src='" + data[i].mainImage + "'> " + data[i].title + " </a>"));
+            $("ul#ticker01").append($("<li>").html("<a href='frontarticle?id=" + data[i].id + "' ><img src='" + data[i].mainImage + "'> " + data[i].title + " </a>"));
         }
     }
 
@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
     function changeSideArticle(data) {
         $(".latest_postnav").html("");
         for (var i = 0; i < data.length; i++) {
-            $(".latest_postnav").append("<li style='margin-top: 0px;'> <div class='media'> <a href='pages/single_page.html' class='media-left'> <img  src='" + data[i].mainImage + "'> </a> <div class='media-body'> <a href='pages/single_page.html' class='catg_title'> " + data[i].title + "</a> </div> </div> </li>");
+            $(".latest_postnav").append("<li style='margin-top: 0px;'> <div class='media'> <a href='frontarticle?id=" + data[i].id + "' class='media-left'> <img  src='" + data[i].mainImage + "'> </a> <div class='media-body'> <a href='pages/single_page.html' class='catg_title'> " + data[i].title + "</a> </div> </div> </li>");
         }
     }
 

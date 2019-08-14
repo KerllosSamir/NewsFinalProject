@@ -252,7 +252,7 @@ public class ArticleDao {
             pstmt = conn.prepareStatement(query); // create a statement
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Article Article = new Article(rs.getString(2), rs.getString(3), rs.getInt(4),
+                Article Article = new Article(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4),
                         rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8));
                 map.put(rs.getInt(1), Article);
             }

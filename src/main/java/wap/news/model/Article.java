@@ -20,7 +20,16 @@ public class Article {
         this.isRotating = isRotating;
         this.isActive = isActive;
     }
-
+    public Article(int id,String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
+        this.id=id;
+        this.title = title;
+        this.body = body;
+        this.categoryId = categoryId;
+        this.mainImage = mainImage;
+        this.isNaveBar = isNaveBar;
+        this.isRotating = isRotating;
+        this.isActive = isActive;
+    }
     public int getId() {
         return id;
     }
