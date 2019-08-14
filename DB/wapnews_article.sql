@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `wapnews` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `wapnews`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wapnews
@@ -27,13 +25,14 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(1000) DEFAULT NULL,
-  `Body` longtext,
+  `body` longtext,
   `categoryId` int(11) DEFAULT NULL,
   `mainImage` varchar(1000) DEFAULT NULL,
   `isNaveBar` tinyint(4) DEFAULT NULL,
   `isRotating` tinyint(4) DEFAULT NULL,
+  `isActive` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +41,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` VALUES (1,'hello',NULL,NULL,NULL,NULL,NULL,NULL),(5,'Jeffrey Epstein: Two guards suspended and warden removed over death','it comes after the FBI opened an investigation into the death of Epstein, who was facing prosecution for sex trafficking when he was found dead.\r\n\r\nThe suspension, ordered by Attorney General William Barr, came a day after he criticised the jail\'s \"failure\".\r\n\r\nThe circumstance surrounding the financier\'s death has raised questions.\r\n\r\nIt remains unclear why Epstein was taken off suicide watch after an attempted suicide last month. He also was supposed to have been checked in on by a guard every 30 minutes.\r\n\r\nBefore his downfall, Epstein had previously counted many prominent rich and powerful people, including Presidents Bill Clinton and Donald Trump, as friends.',4,'ggg',1,1,1);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-12 20:08:31
+-- Dump completed on 2019-08-14 10:04:00

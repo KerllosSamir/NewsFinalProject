@@ -122,6 +122,7 @@
         <div class="form-group">
             <label for="mainImage">Main Image:</label>
             <input type="text" class="form-control" id="mainImage" name="mainImage" placeholder="Enter title"/>
+
         </div>
 
         <div class="checkbox">
