@@ -243,4 +243,41 @@ public class ArticleDao {
         } // end try
 
     }
+
+    public Map<Integer, Article> getNavigationArticles() {
+        try {
+            Map<Integer, Article> map = new HashMap<>();
+            conn = jdbcConnection.getConnection();
+            String query = "SELECT * FROM article where isNaveBar=1 and Isactive=1";
+            pstmt = conn.prepareStatement(query); // create a statement
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Article Article = new Article(rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8));
+                map.put(rs.getInt(1), Article);
+            }
+            System.out.println(map);
+            return map;
+        } catch (SQLException se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            // Handle errors for Class.fortitle
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (pstmt != null)
+                    conn.close();
+            } catch (SQLException se) {
+            } // do nothing
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        } // end try
+        return null;
+    }
 }

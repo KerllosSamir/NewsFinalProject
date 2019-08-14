@@ -5,6 +5,7 @@ import wap.news.dao.CategoryDao;
 import wap.news.model.Category;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10,      // 10MB
+        maxRequestSize = 1024 * 1024 * 50)
 @WebServlet(name = "UpdateArticleServlet", value = "/update-article")
 public class UpdateArticleServlet extends HttpServlet {
+    private static final String SAVE_DIR="articleimages";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String id = request.getParameter("id");
