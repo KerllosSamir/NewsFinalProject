@@ -17,7 +17,7 @@
     <c:choose>
     <c:when test="${param.update == 'true'}">
     <h2>Update article information</h2>
-    <form method="post" action="../update-article">
+    <form method="post" action="../update-article" enctype="multipart/form-data">
         <c:forEach items="${articleById}" var="val">
             <input type="hidden" name="id" value="${val.key}">
             <div class="form-group">
