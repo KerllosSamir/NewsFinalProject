@@ -1,6 +1,8 @@
 jQuery(document).ready(function () {
     $(function () {
-        getAllMenu()
+        getAllMenu();
+        getNavAriticle();
+        getSideArticle();
     });
 
     function getAllMenu() {
@@ -10,14 +12,38 @@ jQuery(document).ready(function () {
     }
 
     function changeMenu(data) {
-
         $("#topMenu").html("");
-
         var ul = $("#topMenu");
         for (var i = 0; i < data.length; i++) {
             ul.append($("<li>").html("<a href='aCategory?id=" + data[i].id + "' > " + data[i].name + " </a>"));
         }
         $("#topMenu").append(ul);
+    }
+
+    function getNavAriticle() {
+        $.ajax("articleScroll", {
+            "type": "get",
+        }).done(changeScrollArticle);
+    }
+
+    function changeScrollArticle(data) {
+        $("ul#ticker01").html("");
+        for (var i = 0; i < data.length; i++) {
+            $("ul#ticker01").append($("<li>").html("<a href='aCategory?id=" + data[i].id + "' ><img src='" + data[i].mainImage + "'> " + data[i].title + " </a>"));
+        }
+    }
+
+    function getSideArticle() {
+        $.ajax("articleScroll", {
+            "type": "post",
+        }).done(changeSideArticle);
+    }
+
+    function changeSideArticle(data) {
+        $(".latest_postnav").html("");
+        for (var i = 0; i < data.length; i++) {
+            $(".latest_postnav").append("<li style='margin-top: 0px;'> <div class='media'> <a href='pages/single_page.html' class='media-left'> <img  src='" + data[i].mainImage + "'> </a> <div class='media-body'> <a href='pages/single_page.html' class='catg_title'> " + data[i].title + "</a> </div> </div> </li>");
+        }
     }
 
     // for hover dropdown menu
