@@ -35,7 +35,7 @@ public class UpdateArticleServlet extends HttpServlet {
         //get the InputStream to store the file somewhere
         InputStream fileInputStream = filePart.getInputStream();
 
-        File fileToSave = new File(request.getSession().getServletContext().getRealPath("articleimages") + "/" + filePart.getSubmittedFileName());
+        File fileToSave = new File(request.getSession().getServletContext().getRealPath("articleImages") + "/" + filePart.getSubmittedFileName());
         Files.copy(fileInputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         //get the URL of the uploaded file
