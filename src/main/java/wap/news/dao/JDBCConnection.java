@@ -10,7 +10,7 @@ public class JDBCConnection {
 	static final String DB_URL = "jdbc:mysql://localhost/wapnews";
 	// Database credentials
 	static final String USER = "root";
-	static final String PASS = "123456";
+	static final String PASS = "root";
 	Connection conn = null;
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
