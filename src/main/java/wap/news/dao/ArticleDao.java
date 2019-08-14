@@ -1,5 +1,7 @@
 package wap.news.dao;
 
+import wap.news.model.Article;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,26 +9,28 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import wap.news.model.Category;
-
-public class CategoryDao {
-
+public class ArticleDao {
     private JDBCConnection jdbcConnection;
     private Connection conn = null;
     private PreparedStatement pstmt = null;
 
-    public CategoryDao() {
+    public ArticleDao() {
         jdbcConnection = new JDBCConnection();
     }
 
-    public void addCategory(String name,boolean isActive) {
+    public void addArticle(String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
         try {
-            Category category = new Category(name,isActive);
+            Article Article = new Article(title, body, categoryId, mainImage, isNaveBar, isRotating, isActive);
             conn = jdbcConnection.getConnection();
-            String sql = "INSERT INTO category(name,isActive) VALUES (?,?)";
+            String sql = "INSERT INTO Article(title, body, categoryId, mainImage, isNaveBar, isRotating, isActive) VALUES (?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, category.getName());
-            pstmt.setBoolean(2, category.getIsActive());
+            pstmt.setString(1, Article.getTitle());
+            pstmt.setString(2, Article.getBody());
+            pstmt.setInt(3, Article.getCategoryId());
+            pstmt.setString(4, Article.getMainImage());
+            pstmt.setBoolean(5, Article.getIsNaveBar());
+            pstmt.setBoolean(6, Article.getIsRotating());
+            pstmt.setBoolean(7, Article.getIsActive());
             //System.out.println("sql =" + sql);
             pstmt.executeUpdate();
             //System.out.println("Inserted records into the table...");
@@ -35,7 +39,7 @@ public class CategoryDao {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
+            // Handle errors for Class.fortitle
             e.printStackTrace();
         } finally {
             // finally block used to close resources
@@ -54,16 +58,17 @@ public class CategoryDao {
 
     }
 
-    public Map<Integer, Category> getAllCategories() {
+    public Map<Integer, Article> getAllArticles() {
         try {
-            Map<Integer, Category> map = new HashMap<>();
+            Map<Integer, Article> map = new HashMap<>();
             conn = jdbcConnection.getConnection();
-            String query = "SELECT * FROM category ";
+            String query = "SELECT * FROM article ";
             pstmt = conn.prepareStatement(query); // create a statement
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Category category = new Category(rs.getString(2), rs.getBoolean(3));
-                map.put(rs.getInt(1), category);
+                Article Article = new Article(rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8));
+                map.put(rs.getInt(1), Article);
             }
             System.out.println(map);
             return map;
@@ -71,42 +76,7 @@ public class CategoryDao {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
-            // finally block used to close resources
-            try {
-                if (pstmt != null)
-                    conn.close();
-            } catch (SQLException se) {
-            } // do nothing
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            } // end finally try
-        } // end try
-        return null;
-    }
-    public Map<Integer, Category> getActiveCategories() {
-        try {
-            Map<Integer, Category> map = new HashMap<>();
-            conn = jdbcConnection.getConnection();
-            String query = "SELECT * FROM category where isactive=1";
-            pstmt = conn.prepareStatement(query); // create a statement
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                Category category = new Category(rs.getInt(1),rs.getString(2), rs.getBoolean(3));
-                map.put(rs.getInt(1), category);
-            }
-            System.out.println(map);
-            return map;
-        } catch (SQLException se) {
-            // Handle errors for JDBC
-            se.printStackTrace();
-        } catch (Exception e) {
-            // Handle errors for Class.forName
+            // Handle errors for Class.fortitle
             e.printStackTrace();
         } finally {
             // finally block used to close resources
@@ -125,17 +95,55 @@ public class CategoryDao {
         return null;
     }
 
-    public Map<Integer, Category> getCategoryById(String id) {
+    public Map<Integer, Article> getActiveArticles() {
         try {
-            Map<Integer, Category> mapWithId = new HashMap<>();
+            Map<Integer, Article> map = new HashMap<>();
             conn = jdbcConnection.getConnection();
-            String query = "SELECT * FROM category WHERE id = ?";
+            String query = "SELECT * FROM article where isactive=1";
+            pstmt = conn.prepareStatement(query); // create a statement
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Article Article = new Article(rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8));
+                map.put(rs.getInt(1), Article);
+            }
+            System.out.println(map);
+            return map;
+        } catch (SQLException se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            // Handle errors for Class.fortitle
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (pstmt != null)
+                    conn.close();
+            } catch (SQLException se) {
+            } // do nothing
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        } // end try
+        return null;
+    }
+
+    public Map<Integer, Article> getArticleById(String id) {
+        try {
+            Map<Integer, Article> mapWithId = new HashMap<>();
+            conn = jdbcConnection.getConnection();
+            String query = "SELECT * FROM article WHERE id = ?";
             pstmt = conn.prepareStatement(query); // create a statement
             pstmt.setInt(1, Integer.parseInt(id));
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Category contact = new Category(rs.getString(2), rs.getBoolean(3));
-                mapWithId.put(Integer.parseInt(id), contact);
+                Article Article = new Article(rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8));
+                mapWithId.put(Integer.parseInt(id), Article);
             }
             return mapWithId;
 
@@ -143,7 +151,7 @@ public class CategoryDao {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
+            // Handle errors for Class.fortitle
             e.printStackTrace();
         } finally {
             // finally block used to close resources
@@ -163,10 +171,10 @@ public class CategoryDao {
     }
 
     // delete records based on id
-    public void deleteCategory(String id) {
+    public void deleteArticle(String id) {
         try {
             conn = jdbcConnection.getConnection();
-            String query = "DELETE FROM category WHERE id = ?";
+            String query = "DELETE FROM Article WHERE id = ?";
             pstmt = conn.prepareStatement(query); // create a statement
             pstmt.setInt(1, Integer.parseInt(id));
             // execute delete SQL stetement
@@ -176,7 +184,7 @@ public class CategoryDao {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
+            // Handle errors for Class.fortitle
             e.printStackTrace();
         } finally {
             // finally block used to close resources
@@ -196,14 +204,20 @@ public class CategoryDao {
     }
 
     // delete records based on id
-    public void updateCategory(String id, String name, Boolean isActive) {
+    public void updateArticle(String id, String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
         try {
             conn = jdbcConnection.getConnection();
-            String query = "UPDATE Category SET name = ?, isActive = ? WHERE id = ?";
+            String query = "UPDATE Article SET title = ?, body = ? , categoryId = ? , mainImage = ? , isNaveBar = ? , isRotating = ? ,  isActive = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query); // create a statement
-            pstmt.setString(1, name);
-            pstmt.setBoolean(2, isActive);
-            pstmt.setInt(3, Integer.parseInt(id));
+
+            pstmt.setString(1, title);
+            pstmt.setString(2, body);
+            pstmt.setInt(3, categoryId);
+            pstmt.setString(4, mainImage);
+            pstmt.setBoolean(5, isNaveBar);
+            pstmt.setBoolean(6, isRotating);
+            pstmt.setBoolean(7, isActive);
+            pstmt.setInt(8, Integer.parseInt(id));
             // execute update SQL stetement
             pstmt.executeUpdate();
             System.out.println("Record is Updated!");
@@ -211,7 +225,7 @@ public class CategoryDao {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
+            // Handle errors for Class.fortitle
             e.printStackTrace();
         } finally {
             // finally block used to close resources
@@ -229,5 +243,4 @@ public class CategoryDao {
         } // end try
 
     }
-
 }

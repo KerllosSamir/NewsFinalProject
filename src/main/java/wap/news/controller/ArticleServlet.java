@@ -1,5 +1,6 @@
 package wap.news.controller;
 
+import wap.news.dao.ArticleDao;
 import wap.news.dao.CategoryDao;
 import wap.news.model.Category;
 
@@ -10,25 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "AddCategoryServlet", value = "/add-category")
-public class AddCategoryServlet extends HttpServlet {
+@WebServlet(name = "ArticleServlet", value = "/article")
+public class ArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        boolean isActive = false;
-        if (request.getParameter("isActive")!=null) {
-            isActive = true;
-        }
-
-        CategoryDao dao = new CategoryDao();
-        dao.addCategory(name, isActive);
-        HttpSession session = request.getSession();
-        session.setAttribute("categoryList", dao.getAllCategories());
-        response.sendRedirect("backend/category.jsp");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        ArticleDao Article = new ArticleDao();
+        HttpSession session = request.getSession();
+        session.setAttribute("articleList", Article.getAllArticles());
+        List<Category> listCatagory = new ArrayList<>(new CategoryDao().getActiveCategories().values());
+        session.setAttribute("categoryList", listCatagory);
+        response.sendRedirect("backend/article.jsp");
     }
 }
