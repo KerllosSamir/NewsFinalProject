@@ -2,6 +2,7 @@ package wap.news.controller;
 
 import com.google.gson.Gson;
 import wap.news.dao.CategoryDao;
+import wap.news.model.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "MenuServlet",value = "/menu")
+@WebServlet(name = "MenuServlet", value = "/menu")
 public class MenuServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,19 +23,16 @@ public class MenuServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CategoryDao category = new CategoryDao();
         PrintWriter out = response.getWriter();
-        List<String> categoryList = new ArrayList<>();
+        List<Category> categoryList = new ArrayList<>();
         category.getAllCategories().forEach((k, v) -> {
-            if(v.getName()!=null) {
-                categoryList.add(v.getName());
-            }
+            categoryList.add(new Category(k, v.getName(), v.getIsActive()));
         });
 
-
-        String JSONguests;
-        JSONguests = new Gson().toJson(categoryList);
+        String JSONcategory;
+        JSONcategory = new Gson().toJson(categoryList);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        out.write(JSONguests);
+        out.write(JSONcategory);
     }
 }

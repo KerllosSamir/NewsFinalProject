@@ -15,7 +15,7 @@ public class AddCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         boolean isActive = false;
-        if (request.getParameter("isActive")!=null) {
+        if (request.getParameter("isActive") != null) {
             isActive = true;
         }
 
