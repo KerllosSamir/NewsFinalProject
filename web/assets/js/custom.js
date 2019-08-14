@@ -42,7 +42,7 @@ jQuery(document).ready(function () {
     function changeSideArticle(data) {
         $(".latest_postnav").html("");
         for (var i = 0; i < data.length; i++) {
-            $(".latest_postnav").append("<li style='margin-top: 0px;'> <div class='media'> <a href='frontarticle?id=" + data[i].id + "' class='media-left'> <img  src='" + data[i].mainImage + "'> </a> <div class='media-body'> <a href='pages/single_page.html' class='catg_title'> " + data[i].title + "</a> </div> </div> </li>");
+            $(".latest_postnav").append("<li style='margin-top: 0px;'> <div class='media'> <a href='frontarticle?id=" + data[i].id + "' class='media-left'> <img  src='" + data[i].mainImage + "'> </a> <div class='media-body'> <a href='frontarticle?id=" + data[i].id + "' class='catg_title'> " + data[i].title + "</a> </div> </div> </li>");
         }
     }
 
