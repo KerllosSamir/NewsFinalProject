@@ -15,12 +15,14 @@
                     class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="../category">Article Category</a></li>
-                    <li><a href="#">Page 1-2</a></li>
+                    <li><a href="../article">Articles</a></li>
                     <li><a href="#">Page 1-3</a></li>
                 </ul>
             </li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li><a href="../article">Articles</a></li>
+            <li><a href="#">Page </a></li>
+            <li><a href="#">Page </a></li>
+            <li><a href="#">Page </a></li>
         </ul>
     </div>
 </nav>
