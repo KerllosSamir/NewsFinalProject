@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ek
-  Date: 2019-08-14
-  Time: 12:30
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>ContactUs</title>
@@ -17,7 +12,8 @@
     <script src="../assets/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<jsp:include page="menu.jsp"></jsp:include>
+<div class="container">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -32,11 +28,12 @@
             <tr>
                 <td><c:out value="${val.value.name}"/></td>
                 <td><c:out value="${val.value.email}"/></td>
-                <td><c:out value="${val.value.message}"</td>
+                <td><c:out value="${val.value.message}"/></td>
 
             </tr>
         </c:forEach>
         </tbody>
-</table>
+    </table>
+</div>
 </body>
 </html>
