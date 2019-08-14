@@ -20,7 +20,7 @@
                 </ul>
             </li>
             <li><a href="../article">Articles</a></li>
-            <li><a href="#">Page </a></li>
+            <li><a href="../contactbackend">Contact US </a></li>
             <li><a href="#">Page </a></li>
             <li><a href="#">Page </a></li>
         </ul>
