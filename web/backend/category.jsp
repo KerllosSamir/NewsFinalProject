@@ -14,6 +14,10 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="container">
+    <div class="alert alert-danger" style="display:${catErrorDispaly == null? 'none' : catErrorDispaly } ">
+        <strong>Validation Error! </strong><br> ${categoryError}
+    </div>
+
     <c:choose>
     <c:when test="${param.update == 'true'}">
     <h2>Update category information</h2>

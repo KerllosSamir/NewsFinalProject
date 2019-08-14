@@ -27,19 +27,23 @@ import javax.servlet.http.Part;
 @WebServlet(name = "UpdateArticleServlet", value = "/update-article")
 public class UpdateArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //get the file chosen by the user
-        Part filePart = request.getPart("mainImage");
-        //get the InputStream to store the file somewhere
-        InputStream fileInputStream = filePart.getInputStream();
+        String error = "";
+        String mainImage = "";
+        try {
+            Part filePart = request.getPart("mainImage");
+            //get the InputStream to store the file somewhere
+            InputStream fileInputStream = filePart.getInputStream();
 
-        File fileToSave = new File(request.getSession().getServletContext().getRealPath("articleImages") + "/" + filePart.getSubmittedFileName());
-        Files.copy(fileInputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            File fileToSave = new File(request.getSession().getServletContext().getRealPath("articleImages") + "/" + filePart.getSubmittedFileName());
+            Files.copy(fileInputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-        //get the URL of the uploaded file
-        String fileUrl = "articleImages/" + filePart.getSubmittedFileName();
-
-        String mainImage = fileUrl;
+            //get the URL of the uploaded file
+            String fileUrl = "articleImages/" + filePart.getSubmittedFileName();
+            mainImage = fileUrl;
+        } catch (Exception e) {
+            error = "Main image is required and cannot be empty <br/>";
+        }
 
         String id = request.getParameter("id");
         String title = request.getParameter("title");
@@ -64,8 +68,23 @@ public class UpdateArticleServlet extends HttpServlet {
             isActive = true;
         }
 
+        if (title == null || title.equals("")) {
+            error += "Title is required and cannot be empty <br/>";
+        }
+        if (body == null || body.equals("")) {
+            error += "Body is required and cannot be empty <br/>";
+        }
         ArticleDao dao = new ArticleDao();
-        dao.updateArticle(id, title, body, categoryId, mainImage, isNaveBar, isRotating, isActive);
+        HttpSession session = request.getSession();
+
+        if (error == "") {
+            session.removeAttribute("articleError");
+            session.setAttribute("errorDispaly", "none");
+            dao.updateArticle(id, title, body, categoryId, mainImage, isNaveBar, isRotating, isActive);
+        } else {
+            session.setAttribute("articleError", error);
+            session.setAttribute("errorDispaly", "block");
+        }
         response.sendRedirect("article");
     }
 

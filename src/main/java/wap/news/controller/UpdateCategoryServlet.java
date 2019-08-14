@@ -13,14 +13,32 @@ import java.io.IOException;
 @WebServlet(name = "UpdateCategoryServlet", value = "/update-category")
 public class UpdateCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String error = "";
+
         CategoryDao dao = new CategoryDao();
+        HttpSession session = request.getSession();
+
         String id = request.getParameter("id");
         String name = request.getParameter("name");
+
         boolean isActive = false;
-        if (request.getParameter("isActive")!=null) {
+        if (request.getParameter("isActive") != null) {
             isActive = true;
         }
-        dao.updateCategory(id, name, isActive);
+
+        if (name == null || name.equals("")) {
+
+            error += "Name is required and cannot be empty <br/>";
+        }
+
+        if (error == "") {
+            session.removeAttribute("categoryError");
+            session.setAttribute("catErrorDispaly", "none");
+            dao.updateCategory(id, name, isActive);
+        } else {
+            session.setAttribute("categoryError", error);
+            session.setAttribute("catErrorDispaly", "block");
+        }
         response.sendRedirect("category");
     }
 

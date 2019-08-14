@@ -14,6 +14,11 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="container">
+
+    <div class="alert alert-danger" style="display:${errorDispaly == null? 'none' : errorDispaly } ">
+        <strong>Validation Error! </strong><br> ${articleError}
+    </div>
+
     <c:choose>
     <c:when test="${param.update == 'true'}">
     <h2>Update article information</h2>
@@ -43,8 +48,8 @@
 
             <div class="form-group">
                 <label for="umainImage">Main Image:</label>
-               <%-- <input type="text" class="form-control" id="umainImage" name="mainImage" value="${val.value.mainImage}"/>--%>
-                <input type="file" name="mainImage" id="umainImage"  class="form-control"/>
+                    <%-- <input type="text" class="form-control" id="umainImage" name="mainImage" value="${val.value.mainImage}"/>--%>
+                <input type="file" name="mainImage" id="umainImage" class="form-control"/>
             </div>
 
             <div class="checkbox">
@@ -91,7 +96,6 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-
             <button type="submit" class="btn btn-default" value="Update">Update</button>
         </c:forEach>
     </form>
@@ -99,7 +103,7 @@
 
     <c:otherwise>
     <h2>Add new article information</h2>
-    <form method="post" action="../add-article" enctype="multipart/form-data">
+    <form method="post" action="../add-article" enctype="multipart/form-data" id="articleForm">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter title"/>
@@ -122,8 +126,8 @@
         </div>
         <div class="form-group">
             <label for="mainImage">Main Image:</label>
-            <%--<input type="text" class="form-control" id="mainImage" name="mainImage" placeholder="Enter title"/>--%>
-            <input type="file" name="mainImage" id="mainImage"  class="form-control"/>
+                <%--<input type="text" class="form-control" id="mainImage" name="mainImage" placeholder="Enter title"/>--%>
+            <input type="file" name="mainImage" id="mainImage" class="form-control"/>
         </div>
 
         <div class="checkbox">
