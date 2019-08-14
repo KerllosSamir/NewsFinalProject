@@ -26,8 +26,6 @@ import javax.servlet.http.Part;
         maxRequestSize = 1024 * 1024 * 50)
 @WebServlet(name = "UpdateArticleServlet", value = "/update-article")
 public class UpdateArticleServlet extends HttpServlet {
-    private static final String SAVE_DIR = "articleimages";
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //get the file chosen by the user
@@ -39,7 +37,7 @@ public class UpdateArticleServlet extends HttpServlet {
         Files.copy(fileInputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         //get the URL of the uploaded file
-        String fileUrl = "articleimages/" + filePart.getSubmittedFileName();
+        String fileUrl = "articleImages/" + filePart.getSubmittedFileName();
 
         String mainImage = fileUrl;
 
