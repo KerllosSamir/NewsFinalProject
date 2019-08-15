@@ -14,7 +14,12 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="container">
-
+        <%
+    session=request.getSession(false);
+    if(session.getAttribute("User_ID")==null)
+    {
+        response.sendRedirect("login.jsp");
+    }%>
     <div class="alert alert-danger" style="display:${errorDispaly == null? 'none' : errorDispaly } ">
         <strong>Validation Error! </strong><br> ${articleError}
     </div>

@@ -28,7 +28,7 @@ CREATE TABLE `contactus` (
   `email` varchar(45) DEFAULT NULL,
   `message` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `contactus` (
 
 LOCK TABLES `contactus` WRITE;
 /*!40000 ALTER TABLE `contactus` DISABLE KEYS */;
+INSERT INTO `contactus` VALUES (1,'Technology','kerllos.samir@gmail.com','adwqeqwe'),(2,'Ekubay','Ekubay@mum.edu','Hello ,\r\n\r\nThank you for your latest news'),(3,'','',''),(4,'ddd','dk@gai','fjk'),(5,'','','');
 /*!40000 ALTER TABLE `contactus` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-14 10:25:53
+-- Dump completed on 2019-08-15 14:03:38
