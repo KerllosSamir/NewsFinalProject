@@ -280,4 +280,43 @@ public class ArticleDao {
         } // end try
         return null;
     }
+
+    public Map<Integer, Article> getArticlesByCategoryId(String categoryId) {
+        try {
+            Map<Integer, Article> map = new HashMap<>();
+            conn = jdbcConnection.getConnection();
+            String query = "SELECT article.*,category.name FROM article inner join category on article.categoryId=category.id  where categoryId = ?";
+            pstmt = conn.prepareStatement(query); // create a statement
+            pstmt.setString(1, categoryId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Article Article = new Article(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4),
+                        rs.getString(5), rs.getBoolean(6), rs.getBoolean(7), rs.getBoolean(8),rs.getString(9));
+                map.put(rs.getInt(1), Article);
+            }
+            System.out.println(map);
+            return map;
+        } catch (SQLException se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            // Handle errors for Class.fortitle
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (pstmt != null)
+                    conn.close();
+            } catch (SQLException se) {
+            } // do nothing
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        } // end try
+        return null;
+    }
 }

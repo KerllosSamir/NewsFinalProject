@@ -14,6 +14,8 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="container">
+    <h2>Contact us information</h2>
+
     <table class="table table-striped">
         <thead>
         <tr>
