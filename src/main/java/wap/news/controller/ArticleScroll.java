@@ -22,7 +22,7 @@ public class ArticleScroll extends HttpServlet {
         ArticleDao articleDao = new ArticleDao();
         PrintWriter out = response.getWriter();
         List<Article> articleList = new ArrayList<>();
-        articleDao.getAllArticles().forEach((k, v) -> {
+        articleDao.getNavigationArticles().forEach((k, v) -> {
             articleList.add(new Article(v.getId(),v.getTitle(), v.getBody(), v.getCategoryId(), v.getMainImage(), v.getIsNaveBar(), v.getIsRotating(), v.getIsActive()));
         });
 

@@ -9,7 +9,7 @@ public class Article {
     private Boolean isNaveBar;
     private Boolean isRotating;
     private Boolean isActive;
-
+    private String categoryName;
 
     public Article(String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
         this.title = title;
@@ -20,8 +20,9 @@ public class Article {
         this.isRotating = isRotating;
         this.isActive = isActive;
     }
-    public Article(int id,String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
-        this.id=id;
+
+    public Article(int id, String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.categoryId = categoryId;
@@ -30,6 +31,19 @@ public class Article {
         this.isRotating = isRotating;
         this.isActive = isActive;
     }
+
+    public Article(int id, String title, String body, int categoryId, String mainImage, Boolean isNaveBar, Boolean isRotating, Boolean isActive, String categoryName) {
+        this.id = id;
+        this.title = title;
+        this.body = body.substring(0, 150);
+        this.categoryId = categoryId;
+        this.mainImage = mainImage;
+        this.isNaveBar = isNaveBar;
+        this.isRotating = isRotating;
+        this.isActive = isActive;
+        this.categoryName = categoryName;
+    }
+
     public int getId() {
         return id;
     }
@@ -94,4 +108,11 @@ public class Article {
         isRotating = rotating;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
