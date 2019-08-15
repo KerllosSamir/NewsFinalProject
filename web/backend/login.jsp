@@ -26,19 +26,6 @@
         <strong>${logErrorMessage}</strong>
     </div>
 
-<%--    <form method="post" action="../login">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter User name">
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password ">
-        </div>
-
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>--%>
-
     <form action="../login" method="post">
         <div class="imgcontainer">
             <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
